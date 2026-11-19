@@ -7,7 +7,7 @@ macOS 菜单栏常驻的统一更新器。只检查、只更新你**关注**（�
 | Homebrew | `brew update` + `brew outdated --json=v2`（可选 `--greedy`） | `brew upgrade --formula/--cask <name>` |
 | npm 全局 | `npm outdated -g --json` | `npm install -g <name>@latest` |
 | uv tool | `uv tool list` + PyPI JSON | `uv tool upgrade <name>` |
-| Agents（claude / codex / gemini / opencode / amp / copilot / cursor-agent…） | `<bin> --version` 对比 npm registry；表在 `~/Library/Application Support/Xup/agents.json` 可自行扩展（内置 agent 没写的字段加载时按内置规则补上；`"updateCommand": []` 表示不更新） | 各自的自更新命令（如 `claude update`、`codex update`），由 brew/npm/uv 安装的归入对应来源 |
+| Agents（claude / codex / gemini / opencode / amp / copilot / cursor-agent / agy…） | `<bin> --version` 对比 npm registry（`npmPackage`）或 GitHub latest release（`githubRepo`，如 agy）；表在 `~/Library/Application Support/Xup/agents.json` 可自行扩展（内置 agent 没写的字段加载时按内置规则补上；之后新增的内置 agent 会追加进文件一次，删掉后不再加回；`"updateCommand": []` 表示不更新） | 各自的自更新命令（如 `claude update`、`codex update`、`agy update`），由 brew/npm/uv 安装的归入对应来源 |
 | Skills（默认 Vercel `skills` CLI） | `~/.agents/.skill-lock.json` + GitHub 该目录是否有新提交 | `npx skills update <name> -g -y` |
 | Skills（设置里切换为 skm，按仓库关注） | `~/.config/skm/skills-lock.yaml`；在 skm 的本地克隆里 `git fetch`，看锁定 commit 之后有没有改动该仓库已安装 skill 目录的提交；本地目录与命令生成的 skill 不列出 | `skm update <该仓库的全部 skill>`（skm 一次 pull 整个仓库） |
 | 插件 | Claude Code：`installed_plugins.json` 对比 marketplace；Codex：`codex plugin list` | `claude plugin update -y <name@mkt>`；Codex 暂只检测 |

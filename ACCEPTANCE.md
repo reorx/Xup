@@ -42,6 +42,7 @@
 - [x] 2026-11-19 Skills 可切换为 skm——设置 › Skills 切换写入 skill.manager；添加 Sheet 读出 45 项 skm skill；关注 grilling / grill-me 后检查得到 grilling 可更新（09-18 → 10-29）、同仓库的 grill-me 最新；`xup config set skill.manager` 热加载后切回 skills CLI。未做真实 `skm update`
 - [x] 2026-11-19 skm 按仓库关注——添加 Sheet 列出 10 个仓库（各带 skill 名单，不含本地/命令类）；关注 3 个仓库后检查：mattpocock/skills 可更新 · grilling 有新提交，firecrawl/cli、vercel-labs/agent-browser 最新（用户此前已手动更新）。仓库级 `skm update` 未在 Xup 内实测（命令由单元测试覆盖）
 - [x] 2026-11-19 Codex（官方独立安装，~/.codex/packages/standalone）可在 Xup 内更新——此前内置规则缺 updateCommand，显示"未知安装方式"。修复后本机 agents.json 未改动（加载时按内置规则补字段），`xup update agent:codex --wait --yes` 执行 `codex update`，非 TTY 下 16.6 s 完成 0.169.1 → 0.170.0
+- [x] 2026-11-19 Antigravity CLI（`agy`，~/.local/bin 原生二进制）——本机 agents.json 还原为旧的 7 项、清掉 `seenBuiltinAgents` 后启动：agy 追加到文件末尾，`seenBuiltinAgents` 记为 8 项；`xup installed agent` 列出 agy 1.5.11；关注后检查得到 1.5.11 → 1.5.12（GitHub release）；`xup update agent:agy --wait --yes` 执行 `agy update`，非 TTY 下 7.8 s 完成，更新历史记一条成功。从文件删掉 agy 后重新加载不再加回（已恢复）。另：此前 `swift test` 会读写真实 agents.json（本次测试先把 agy 写进了真实文件），已改为与 config.json 同目录，测试后真实文件不变
 - [x] 2026-11-19 菜单栏面板点不开（App 以 `open -gj` 启动后处于隐藏状态，AXHidden=1，点击只有 order out）——修复后：`open -gj` 启动、CLI 自动拉起（现为 `open -g`）、运行中被设为隐藏，三种情况 AXHidden 均为 0，AX 按下状态栏项后面板上屏；不抢前台焦点
 
 ## G. 待查/后续
