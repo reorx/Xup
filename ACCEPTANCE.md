@@ -42,6 +42,7 @@
 - [x] 2026-11-19 Skills 可切换为 skm——设置 › Skills 切换写入 skill.manager；添加 Sheet 读出 45 项 skm skill；关注 grilling / grill-me 后检查得到 grilling 可更新（09-18 → 10-29）、同仓库的 grill-me 最新；`xup config set skill.manager` 热加载后切回 skills CLI。未做真实 `skm update`
 - [x] 2026-11-19 skm 按仓库关注——添加 Sheet 列出 10 个仓库（各带 skill 名单，不含本地/命令类）；关注 3 个仓库后检查：mattpocock/skills 可更新 · grilling 有新提交，firecrawl/cli、vercel-labs/agent-browser 最新（用户此前已手动更新）。仓库级 `skm update` 未在 Xup 内实测（命令由单元测试覆盖）
 - [x] 2026-11-19 Codex（官方独立安装，~/.codex/packages/standalone）可在 Xup 内更新——此前内置规则缺 updateCommand，显示"未知安装方式"。修复后本机 agents.json 未改动（加载时按内置规则补字段），`xup update agent:codex --wait --yes` 执行 `codex update`，非 TTY 下 16.6 s 完成 0.169.1 → 0.170.0
+- [x] 2026-11-19 菜单栏面板点不开（App 以 `open -gj` 启动后处于隐藏状态，AXHidden=1，点击只有 order out）——修复后：`open -gj` 启动、CLI 自动拉起（现为 `open -g`）、运行中被设为隐藏，三种情况 AXHidden 均为 0，AX 按下状态栏项后面板上屏；不抢前台焦点
 
 ## G. 待查/后续
 - act：首次真机测试中 `brew upgrade --formula act` 后 act 从 Cellar 消失（0.2.96 bottle 已下载但未安装），已手动 `brew install act` 恢复。当时日志未持久化，原因未明；现已把日志写入 ~/Library/Logs/Xup/xup.log，下次复现可查。
